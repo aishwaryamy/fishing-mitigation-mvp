@@ -1,15 +1,4 @@
 # Fishing Mitigation App MVP - Sentiment Analysis Dashboard
-## Purpose
-A prototype for Ithaca Clean Energy's Fishing Mitigation App, analyzing stakeholder sentiment to support offshore wind project engagement.
-## How to Run
-1. Install dependencies: `pip install nltk pandas numpy plotly dash`
-2. Ensure NLTK VADER lexicon is downloaded (included in setup).
-3. Run `app.py`: `python3 app.py`
-4. Access dashboard at `http://127.0.0.1:8050`
-## Relevance
-Supports Ithaca Clean Energy’s WATERFRONT platform by providing data-driven insights into stakeholder concerns, aiding fishing mitigation strategies.
-# Fishing Mitigation App MVP - Sentiment Analysis Dashboard
-
 ## Overview
 This project is a Minimum Viable Product (MVP) for Ithaca Clean Energy's Fishing Mitigation App. It provides data-driven insights for the WATERFRONT platform by analyzing stakeholder sentiment, visualizing sentiment trends, and generating mock Notices to Mariners (NTMs) to support engagement with fishing communities in offshore wind projects.
 
