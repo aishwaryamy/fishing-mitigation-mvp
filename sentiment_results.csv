@@ -1,6 +1,6 @@
-Comment,Sentiment_Score,Sentiment
-"The wind farm disrupts our fishing grounds, causing losses.",-0.4019,Negative
-"I appreciate the updates from the WATERFRONT app, very helpful!",0.7257,Positive
-"Construction noise harms marine life, causing fishing disruptions.",-0.6808,Negative
-Excited about clean energy but worried about our livelihood.,0.3612,Positive
-The app provides updates on wind farm operations.,0.0,Neutral
+Comment,Date,Sentiment_Score,Sentiment
+"The wind farm disrupts our fishing grounds, causing losses.",2025-08-03 14:53:59.025774,-0.4019,Negative
+"I appreciate the updates from the WATERFRONT app, very helpful!",2025-08-04 14:53:59.025781,0.7257,Positive
+"Construction noise harms marine life, causing fishing disruptions.",2025-08-05 14:53:59.025782,-0.6808,Negative
+Excited about clean energy but worried about our livelihood.,2025-08-06 14:53:59.025783,0.3612,Positive
+The app provides updates on wind farm operations.,2025-08-07 14:53:59.025783,0.0,Neutral
