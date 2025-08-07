@@ -1,8 +1,9 @@
 import dash
-from dash import dcc, html
+from dash import dcc, html, dash_table
 import plotly.express as px
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import os
 
 # Simulated stakeholder comments
 comments = [
@@ -12,7 +13,6 @@ comments = [
     "Excited about clean energy but worried about our livelihood.",
     "The app provides updates on wind farm operations."
 ]
-
 df = pd.DataFrame(comments, columns=['Comment'])
 
 # Analyze sentiment
@@ -20,11 +20,12 @@ sia = SentimentIntensityAnalyzer()
 df['Sentiment_Score'] = df['Comment'].apply(lambda x: sia.polarity_scores(x)['compound'])
 df['Sentiment'] = df['Sentiment_Score'].apply(lambda x: 'Positive' if x > 0 else 'Negative' if x < 0 else 'Neutral')
 
-# Debug output
-print("DataFrame:")
-print(df)
-print("\nSentiment Counts:")
-print(df['Sentiment'].value_counts())
+# Debug output (only in main process)
+if __name__ == '__main__' and (os.environ.get('WERKZEUG_RUN_MAIN') == 'true'):
+    print("DataFrame:")
+    print(df)
+    print("\nSentiment Counts:")
+    print(df['Sentiment'].value_counts())
 
 # Save results
 df.to_csv('sentiment_results.csv', index=False)
@@ -36,8 +37,21 @@ fig = px.histogram(df, x='Sentiment', title='Stakeholder Sentiment on Offshore W
 app = dash.Dash(__name__)
 app.layout = html.Div([
     html.H1('Fishing Mitigation App: Sentiment Analysis'),
-    dcc.Graph(figure=fig)
+    dcc.Graph(figure=fig),
+    html.H2('Stakeholder Comments'),
+    dash_table.DataTable(
+        id='comment-table',
+        columns=[
+            {'name': 'Comment', 'id': 'Comment'},
+            {'name': 'Sentiment Score', 'id': 'Sentiment_Score'},
+            {'name': 'Sentiment', 'id': 'Sentiment'}
+        ],
+        data=df.to_dict('records'),
+        style_table={'overflowX': 'auto'},
+        style_cell={'textAlign': 'left', 'padding': '5px'},
+        page_size=5
+    )
 ])
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8050, use_reloader=False)
+    app.run(debug=True, port=8050)
